@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -46,5 +46,23 @@ class User extends Authenticatable
     public function shipperShippings()
     {
         return $this->hasMany('App\Models\Shippings', 'shipper_id', 'id');
+    }
+
+    /**
+     * Get Branches that have been worked On
+     */
+    public function employerBranch()
+    {
+        return $this->belongsToMany('App\Models\Branch', 'branch_employees', 'user_id', 'branch_id');
+    }
+
+    /**
+     * Get Current Branch Where Employee is working on
+     * 
+     * @todo Implement Soft Delete
+     */
+    public function worksAt()
+    {
+        return null;
     }
 }

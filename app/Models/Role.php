@@ -15,6 +15,11 @@ class Role extends Model
         'name'
     ];
 
+    /**
+     * @var timestamps
+     */
+    public $timestamps = false;
+
      /**
      * The users that belong to the role.
      */

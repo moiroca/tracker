@@ -14,6 +14,11 @@ class Branch extends Model
     protected $fillable = [
         'address'
     ];
+    
+    /**
+     * Set Timestamp to false
+     */
+    public $timestamps  = false;
 
     /**
      * Get Shippings
@@ -28,6 +33,14 @@ class Branch extends Model
      */
     public function shippingDestination()
     {
-    	return $this->hasMany('App\Models\Shippings', 'to', 'id')
+    	return $this->hasMany('App\Models\Shippings', 'to', 'id');
+    }
+
+    /**
+     * Get Employees
+     */         
+    public function employees()
+    {
+        return $this->belongsToMany('App\Models\User');
     }
 }
