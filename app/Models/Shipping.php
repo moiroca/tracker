@@ -24,7 +24,6 @@ class Shipping extends Model
     	return $this->belongsTo('App\Models\User', 'consignee_id');
     }
 
-
     /** 
      * Get Shipper 
      */
@@ -47,5 +46,13 @@ class Shipping extends Model
     public function destination()
     {
     	return $this->belongsTo('App\Models\Branch', 'to');
+    }
+
+    /**
+     * Get Locations
+     */
+    public function location()
+    {
+        return $this->belongsToMany('App\Models\User', 'shipping_locations', 'shipping_id', 'added_by');
     }
 }

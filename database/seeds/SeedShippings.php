@@ -52,7 +52,7 @@ class SeedShippings extends Seeder
         	$shippingData = array_merge($shippingData, [
         			'code' => $this->shippingUtility->generateCode()
         		]);
-
+            
         	$shipping = Shipping::create($shippingData);
 
         	if ($shipping->mode == Constant::BRANCH_PICK_UP) {

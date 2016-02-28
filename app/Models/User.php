@@ -57,6 +57,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get Shipping Locations
+     */
+    public function shippingLocation()
+    {
+        return $this->belongsToMany('App\Models\Shipping');
+    }
+
+    /**
      * Get Current Branch Where Employee is working on
      * 
      * @todo Implement Soft Delete

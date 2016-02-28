@@ -13,6 +13,10 @@ class Constant {
 		MANAGER  = 2,
 		EMPLOYEE = 3,
 
+		# Shipping Actors
+		SHIPPING_SHIPPER = 'Shipper',
+		SHIPPING_CONSIGNEE = 'Consignee',
+		
 		# Shipping Status
 		SHIPPING_PENDING 	= 'Pending',
 		SHIPPING_COMPLETE 	= 'Complete',
