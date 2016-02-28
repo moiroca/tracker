@@ -13,4 +13,10 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss');
+
+    // Copy Admin CSS
+    mix.copy([
+    		'node_modules/admin-lte/*'
+    	],
+    	'public/');
 });

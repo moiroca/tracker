@@ -1,0 +1,22 @@
+{
+  "name": "assets",
+  "authors": [
+    "John Roca <rocajohntemoty@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.5.0",
+    "Ionicons": "ionicons#^2.0.1"
+  }
+}
