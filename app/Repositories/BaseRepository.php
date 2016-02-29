@@ -27,6 +27,6 @@ class BaseRepository
 	 */
 	public function getAll()
 	{
-		return $this->model;
+		return $this->model->all();
 	}
 }

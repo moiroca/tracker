@@ -1,26 +1,26 @@
 <?php namespace App\Repositories;
 
 use App\Repositories\BaseRepository;
-use App\Models\Shipping;
+use App\Models\Branch;
 
 /**
- * Shipping Repository Class
+ * Branch Repository Class
  *
  * @author John Temoty Roca <rocajohntemoty@gmail.com>
  * @since 2016
  */
-class ShippingRepository extends BaseRepository
+class BranchRepository extends BaseRepository
 {
 	/**
-	 * @var Shipping $model
+	 * @var Branch $model
 	 */
 	public $model;
 
 	/**
 	 * Constructor Function
 	 */
-	public function __construct(Shipping $shipping)
+	public function __construct(Branch $branch)
 	{
-		$this->model = $shipping;
+		$this->model = $branch;
 	}
 }

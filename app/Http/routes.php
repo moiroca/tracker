@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+# Log the user out of the application route
+Route::get('logout', [ 
+	'as' => 'auth.logout', 
+	'uses' => 'Auth\AuthController@getLogout'
+]);
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +33,24 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+	Route::auth();
+	Route::get('/', function () { return view('welcome'); });
 });
 
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+Route::group(['middleware' => ['web', 'auth']], function () {
+	
+	Route::get('/home', 		[ 'as' => 'home', 'uses' => 'HomeController@index' ]);    
 
-    Route::get('/home', 'HomeController@index');
+	# Shipping Routes
+    Route::get('/shippings', 	[ 'as' => 'shippings', 'uses' => 'ShippingController@index' ]);
+    Route::get('/shippings/new',[ 'as' => 'shippings.new', 'uses' => 'ShippingController@create' ]);
+
+    # User Routes
+	Route::get('/users', 		[ 'as' => 'users', 		'uses' => 'UserController@index' ]);
+	Route::get('/users/new', 	[ 'as' => 'users.new',  'uses' => 'UserController@getCreate' ]);
+	Route::post('/create',		[ 'as' => 'users.create','uses' => 'UserController@postCreate']);
+
+	# Branch Routes
+	Route::get('/branch', 		[ 'as' => 'branch', 	'uses' => 'BranchController@index']);
+	Route::get('/branch/new', 	[ 'as' => 'branch.new', 'uses' => 'BranchController@create']);
 });

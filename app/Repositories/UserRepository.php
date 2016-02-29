@@ -1,4 +1,4 @@
-<?php namesapce App\Repositories;
+<?php namespace App\Repositories;
 
 use App\Repositories\BaseRepository;
 use App\Models\User;
@@ -34,5 +34,13 @@ class UserRepository extends BaseRepository
 	public function getAllUserType($type)
 	{
 		return $this->model->roles->where('name', $type)->get();
+	}
+
+	/** 
+	 * Get All System Users
+	 */
+	public function getAllSystemUser()
+	{
+		return $this->model->with('roles')->join('user_roles', 'user_roles.user_id', '=', 'users.id')->join('roles', 'user_roles.role_id', '=', 'roles.id')->get();
 	}
 }

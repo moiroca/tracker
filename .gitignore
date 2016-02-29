@@ -3,6 +3,7 @@
 /public/storage
 /public/*
 !/public/bower.json
+composer.lock
 Homestead.yaml
 Homestead.json
 .env

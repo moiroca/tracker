@@ -11,12 +11,19 @@ class User extends Authenticatable
     use SoftDeletes;
 
     /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'contact', 'address', 'username', 'password', 
+        'first_name', 'last_name', 'contact', ' address', 'username', 'password', 
     ];
 
     /**
@@ -83,5 +90,15 @@ class User extends Authenticatable
     public function worksAt()
     {
         return null;
+    }
+
+    /**
+     * Get Full Name
+     *
+     * @return String
+     */
+    public function getName()
+    {
+        return $this->last_name.' '.$this->first_name;
     }
 }

@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+	public function __construct()
+	{
+		$this->data = [
+            'page_header'       => 'Home',
+            'page_description'  => ''
+        ];
+	}
     /**
      * Show the application dashboard.
      *
@@ -24,6 +22,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', $this->data);
     }
 }
