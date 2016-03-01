@@ -24,7 +24,8 @@ class SeedBranch extends Seeder
         DB::table('branches')->truncate();
 
         foreach ($this->branches as $key => $branch) {
-        	Branch::create($branch);
+        	$branch = Branch::create($branch);
+            $branch->save();
         }
     }
 }

@@ -1,8 +1,9 @@
 <?php namespace App\Services;
 
-use App\Models\Shipping;
 use App\Utilities\Constant;
 use App\Models\User;
+use App\Models\Shipping;
+use App\Models\Branch;
  
 /**
  * Shipping Service Class
@@ -20,14 +21,35 @@ class ShippingService
 	 *
 	 * @return Shipping $shipping
 	 */
-	public function save($data, Shipping $shipping = null)
+	public function save(
+		$data, 
+		Shipping $shipping = null, 
+		User 	 $shipper  = null, 
+		User 	 $consignee = null, 
+		Branch   $origin = null,
+		Branch   $destination = null)
 	{
 		if (!$shipping) {
 			$shipping = new Shipping();
 		}
 
 		$shipping->fill($data);
-		$shipping->save();
+
+		# Set Destination
+		if ($destination) {
+    		$shipping->destination()->associate($destination);
+    	}
+
+    	# Save Shipper
+    	$shipping->shipper()->associate($shipper);
+
+    	# Save Consignee
+    	$shipping->consignee()->associate($consignee);
+
+    	# Save Branch
+    	$shipping->origin()->associate($origin);
+
+    	$shipping->save();
 
 		return $shipping;
 	}

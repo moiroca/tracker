@@ -43,12 +43,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 	# Shipping Routes
     Route::get('/shippings', 	[ 'as' => 'shippings', 'uses' => 'ShippingController@index' ]);
-    Route::get('/shippings/new',[ 'as' => 'shippings.new', 'uses' => 'ShippingController@create' ]);
+    Route::get('/shippings/new',[ 'as' => 'shippings.new', 'uses' => 'ShippingController@getCreate' ]);
+    Route::post('/shippings/create', [ 'as' => 'shippings.create', 'uses' => 'ShippingController@postCreate' ]);
 
     # User Routes
 	Route::get('/users', 		[ 'as' => 'users', 		'uses' => 'UserController@index' ]);
 	Route::get('/users/new', 	[ 'as' => 'users.new',  'uses' => 'UserController@getCreate' ]);
-	Route::post('/create',		[ 'as' => 'users.create','uses' => 'UserController@postCreate']);
+	Route::post('/users/create',[ 'as' => 'users.create','uses' => 'UserController@postCreate']);
 
 	# Branch Routes
 	Route::get('/branch', 		[ 'as' => 'branch', 	'uses' => 'BranchController@index']);

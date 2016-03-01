@@ -2,6 +2,7 @@
 
 use App\Repositories\BaseRepository;
 use App\Models\Shipping;
+use App\Utilities\Constant;
 
 /**
  * Shipping Repository Class
@@ -22,5 +23,17 @@ class ShippingRepository extends BaseRepository
 	public function __construct(Shipping $shipping)
 	{
 		$this->model = $shipping;
+	}
+
+	/** 
+	 * Get Shipping Modes
+ 	 * @return Array
+ 	 */
+	public function getModes()
+	{
+		return [
+			Constant::BRANCH_PICK_UP,
+			Constant::HOUSE_TO_HOUSE
+		];
 	}
 }
