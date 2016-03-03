@@ -34,12 +34,12 @@ Route::get('logout', [
 
 Route::group(['middleware' => ['web']], function () {
 	Route::auth();
-	Route::get('/', function () { return view('welcome'); });
+	Route::get('/', 		  [ 'as' => 'index', 'uses' => 'HomeController@index' ]);
 });
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 	
-	Route::get('/home', 		[ 'as' => 'home', 'uses' => 'HomeController@index' ]);    
+	Route::get('/home', 		[ 'as' => 'home', 'uses' => 'HomeController@home' ]);    
 
 	# Shipping Routes
     Route::get('/shippings', 	[ 'as' => 'shippings', 'uses' => 'ShippingController@index' ]);
