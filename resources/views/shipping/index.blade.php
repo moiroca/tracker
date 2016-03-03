@@ -10,10 +10,27 @@
             @endif
             <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Shippings Table</h3>
-
-                  <div class="box-tools">
-                        <a href="{{ route('shippings.new') }}" class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-plus'></i> NEW SHIPPING</a>
+                  <div class="row" style='margin-bottom: 10px;'>
+                    <div class='col-md-10'>
+                        <h3 class="box-title">Shippings Table</h3>
+                    </div>
+                    <div class='col-md-2'>
+                        <div class="box-tools">
+                              <a href="{{ route('shippings.new') }}" class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-plus'></i> NEW SHIPPING</a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class="col-md-12">
+                      <form method='GET' action="{{ route('shippings') }}">
+                        <div class="input-group">
+                          <input type='text' name='code' placeholder='Search Shipping Using Code...' class='form-control' aria-describedby="basic-addon2">
+                          <span class="input-group-btn">
+                                <button type='submit' class="btn btn-default" type="button"><i class='glyphicon glyphicon-search'></i></button>
+                              </span>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
                 <!-- /.box-header -->

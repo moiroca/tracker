@@ -52,7 +52,13 @@ class ShippingController extends Controller
      */
     public function index(Request $request)
     {
-        $this->data['shippings'] = $this->shippingRepository->getAll();
+        $code = $request->get('code', '');
+
+        if (!empty($code)) {
+            $this->data['shippings'] = $this->shippingRepository->getShippingByCode($code);
+        } else {
+            $this->data['shippings'] = $this->shippingRepository->getAll();   
+        }
 
     	return view('shipping.index', $this->data );
     }

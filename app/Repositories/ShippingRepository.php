@@ -36,4 +36,14 @@ class ShippingRepository extends BaseRepository
 			Constant::HOUSE_TO_HOUSE
 		];
 	}
+
+	/**
+	 * Get Shipping By Code
+	 *
+	 * @param String $code
+	 */
+	public function getShippingByCode($code)
+	{
+		return $this->model->where('code', 'like', '%'.$code.'%')->get();
+	}
 }
