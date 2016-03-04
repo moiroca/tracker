@@ -53,5 +53,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 	# Branch Routes
 	Route::get('/branch', 		[ 'as' => 'branch', 	'uses' => 'BranchController@index']);
-	Route::get('/branch/new', 	[ 'as' => 'branch.new', 'uses' => 'BranchController@create']);
+	Route::get('/branch/new', 	[ 'as' => 'branch.new', 'uses' => 'BranchController@getCreate']);
+	Route::post('/branch/create', 	[ 'as' => 'branch.create', 'uses' => 'BranchController@postCreate']);
 });

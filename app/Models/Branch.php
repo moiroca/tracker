@@ -14,11 +14,6 @@ class Branch extends Model
     protected $fillable = [
         'address'
     ];
-    
-    /**
-     * Set Timestamp to false
-     */
-    public $timestamps  = false;
 
     /**
      * Get Shippings
