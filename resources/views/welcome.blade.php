@@ -3,11 +3,6 @@
 @section('content')
 	<div class="row">
         <div class="col-lg-12">
-            @if($errors->has('isRequestSuccess'))
-              <div class='alert alert-success'>
-                <i class='fa fa-info'></i> New Shippings Recorded
-              </div>
-            @endif
             <div class="box">
                 <div class="box-header">
                   <div class='row'>
