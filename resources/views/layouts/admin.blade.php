@@ -164,7 +164,7 @@ desired effect
         <li class="header">{{ strtoupper(Auth::user()->last_name) }} MENU</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="{{ route('shippings') }}"><i class="glyphicon glyphicon-globe"></i> <span>Shippings</span></a></li>
-        <li><a href="{{ route('branch') }}"><i class="fa fa-table"></i> <span>Branches</span></a></li>
+        <li><a href="{{ route('branch') }}"><i class="glyphicon glyphicon-briefcase"></i> <span>Branches</span></a></li>
         <li><a href="{{ route('users') }}"><i class="glyphicon glyphicon-user"></i> <span>Users Management</span></a></li>
         <!-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
