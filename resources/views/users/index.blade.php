@@ -50,7 +50,7 @@
 	                		</td>
 	                		<td>{{ $user->created_at }}</td>
 	                		<td>
-	                			<a href="#" class='btn btn-info btn-sm'><i class='glyphicon glyphicon-edit'></i></a>
+	                			<a href="{{ route('users.edit', ['id' => $user->id]) }}" class='btn btn-info btn-sm'><i class='glyphicon glyphicon-edit'></i></a>
 	                			<a href="#" class='btn btn-warning btn-sm'><i class='glyphicon glyphicon-trash'></i></a>
 	                		</td>
 	                	</tr>
