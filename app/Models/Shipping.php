@@ -12,7 +12,7 @@ class Shipping extends Model
      * @var array
      */
     protected $fillable = [
-        'mode', 'code', 'shipper_id', 'consignee_id', 'status', 'from', 'to', 'location'
+        'mode', 'code', 'shipper_id', 'consignee_id', 'status', 'from', 'to', 'location', 'added_by'
     ];
 
     
@@ -49,10 +49,19 @@ class Shipping extends Model
     }
 
     /**
-     * Get Locations
+     * Get Added Shippings
      */
-    public function location()
+    public function addedBy()
     {
-        return $this->belongsToMany('App\Models\User', 'shipping_locations', 'shipping_id', 'added_by');
+        return $this->belongsTo('App\Models\User', 'added_by', 'id');
+    }
+    /**
+     * Get Locations
+     *
+     * @return HasMany
+     */
+    public function shippingLocation()
+    {
+        return $this->hasMany('App\Models\ShippingLocation', 'shipping_id', 'id');
     }
 }

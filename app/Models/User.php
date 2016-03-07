@@ -55,7 +55,7 @@ class User extends Authenticatable
      */
     public function consigneeShippings()
     {
-        return $this->hasMany('App\Models\Shippings', 'consignee_id', 'id');
+        return $this->hasMany('App\Models\Shipping', 'consignee_id', 'id');
     }
 
     /**
@@ -63,7 +63,7 @@ class User extends Authenticatable
      */
     public function shipperShippings()
     {
-        return $this->hasMany('App\Models\Shippings', 'shipper_id', 'id');
+        return $this->hasMany('App\Models\Shipping', 'shipper_id', 'id');
     }
 
     /**
@@ -77,9 +77,17 @@ class User extends Authenticatable
     /**
      * Get Shipping Locations
      */
+    public function location()
+    { 
+        return $this->hasMany('App\Models\Shipping', 'added_by', 'id');
+    }
+
+    /**
+     * Get Added Shipping Locations
+     */
     public function shippingLocation()
     {
-        return $this->belongsToMany('App\Models\Shipping');
+        return $this->belongsTo('App\Models\ShippingLocation', 'added_by');
     }
 
     /**

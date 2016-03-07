@@ -12,7 +12,8 @@
                 <div class="box-header">
                   <div class="row" style='margin-bottom: 10px;'>
                     <div class='col-md-10'>
-                        <h3 class="box-title">Shippings Table</h3>
+                        <h3 class="box-title">Shippings Table</h3>           
+                        <p><small> <i class="glyphicon glyphicon-info-sign"></i> By Clicking Code You Can Add Location</small></p>             
                     </div>
                     <div class='col-md-2'>
                         <div class="box-tools">
@@ -38,7 +39,9 @@
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                      <th>Code</th>
+                      <th>
+                        Code
+                      </th>
                       <th>Mode </th>
                       <th>Shipper </th>
                       <th>Consignee </th>
@@ -52,7 +55,9 @@
                     <tbody>
                         @foreach( $shippings as $shipping )
                             <tr>
-                                <td>{{ $shipping->code }}</td>
+                                <td>
+                                    <a href="{{ route('shippings.location.new', ['code' => $shipping->code]) }}" title="Click to add current location">{{ $shipping->code }}</a>
+                                </td>
                                 <td>{{ $shipping->mode }}</td>
                                 <td>{{ $shipping->shipper->getName() }}</td>
                                 <td>{{ $shipping->consignee->getName() }}</td>

@@ -64,6 +64,9 @@ class SeedShippings extends Seeder
         		$shipping->location = $destinationBranch->address;
         	}
 
+            # Save User who Added the Shipping
+            $shipping->addedBy()->associate(User::find(1));
+
         	# Save Shipper
         	$shipping->shipper()->associate(User::find(4));
 

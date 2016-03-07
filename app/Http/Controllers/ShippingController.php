@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateShippingLocation;
 use App\Http\Requests;
 use App\Http\Requests\CreateShippingRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\ShippingRepository;
 use App\Repositories\BranchRepository;
 use App\Services\ShippingService;
+use App\Services\ShippingLocationService;
 use App\Services\UserService;
 use App\Utilities\Constant;
 use App\Utilities\ShippingUtility;
 use App\Models\Branch;
+use App\Models\ShippingLocation;
 
 class ShippingController extends Controller
 {
@@ -49,6 +53,8 @@ class ShippingController extends Controller
 
     /**
      * Index Page for Shipping
+     *
+     * @param Request $request
      */
     public function index(Request $request)
     {
@@ -65,6 +71,9 @@ class ShippingController extends Controller
 
     /**
      * Create New Shipping
+     *
+     * @param Request $request
+     * @param BranchRepository $branchRepo
      */
     public function getCreate(Request $request, BranchRepository $branchRepo)
     {
@@ -76,6 +85,9 @@ class ShippingController extends Controller
 
     /**
      * Post Create
+     *
+     * @param CreateShippingRequest
+     * @param UserService $userService
      */
     public function postCreate(
         CreateShippingRequest $createShippingRequest, 
@@ -127,5 +139,56 @@ class ShippingController extends Controller
         }
 
         return redirect()->route('shippings')->withErrors([ 'isRequestSuccess' => $isRequestSuccess, 'error' => $error ]);
+    }
+
+    /**
+     * Get Create Shipping Location
+     *
+     * @param Request $request
+     * @param String $code
+     */
+    public function getCreateShippingLocation(Request $request, $code)
+    {   
+        $this->data['shipping'] = $this->shippingRepository->model->where('code', '=', $code)->first();
+        $this->data['shippingLocations'] = ShippingLocation::where('shipping_id', '=', $this->data['shipping']->id)->withTrashed()->orderBy('created_at', 'DESC')->get();
+
+        return view('shipping.location.create', $this->data);
+    }
+
+    /**
+     * Post Create Shipping Location
+     *
+     * @param Request $request 
+     *
+     * @return Mixed
+     */
+    public function postCreateShippingLocation(CreateShippingLocation $request, ShippingLocationService $shippingLocationService)
+    {
+        $isRequestSuccess = false;
+        $error = '';
+        $code = $request->get('shipping_code', '');
+
+        try {
+            
+            $data = $request->all();
+            $shipping = $this->shippingRepository->model->where('code', '=', $code)->first();
+
+            if (!$shipping) { throw new \Exception('No Shipping Found'); }
+
+            $shippingLocation = $shipping->shippingLocation->first();
+
+            # Delete Current Shipping Location
+            if($shippingLocation) { $shippingLocationService->deleteShippingLocation($shippingLocation); }
+
+            $shippingLocation = $shippingLocationService->save([
+                    'location'  => $data['shipping_location']
+                ], $shipping, Auth::user());
+
+            $isRequestSuccess = true;
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+        }
+
+        return redirect()->route('shippings.location.new', ['code' => $code])->withErrors([ 'isRequestSuccess' => $isRequestSuccess, 'error' => $error ]);
     }
 }

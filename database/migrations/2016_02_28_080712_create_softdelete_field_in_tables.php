@@ -33,9 +33,9 @@ class CreateSoftdeleteFieldInTables extends Migration
         // });
 
         # Create Soft Delete Field shipping_locations
-        // Schema::table('shipping_locations', function(Blueprint $table) {
-        //     $table->softdeletes();
-        // });
+        Schema::table('shipping_locations', function(Blueprint $table) {
+            $table->softdeletes();
+        });
     }
 
     /**

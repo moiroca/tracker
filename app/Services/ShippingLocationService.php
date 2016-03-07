@@ -2,6 +2,7 @@
 
 use App\Models\Shipping;
 use App\Models\User;
+use App\Models\ShippingLocation;
 
 /**
  * Shipping Location Service
@@ -13,11 +14,38 @@ class ShippingLocationService
 {
 	/**
 	 * Save Shipping Location
+	 *
+	 * @param Array $data
+	 * @param User $actor
 	 */
-	public function save($data, User $user, Shipping $shipping)
+	public function save($data, Shipping $shipping, User $actor)
 	{
-		$shipping->location->pivot->location = $data['location'];
-		$shipping->location->associate($user);
-		$shipping->save();
+		$shippingLocation = new ShippingLocation();
+
+
+        $shippingLocation->fill([
+                'location' => $data['location']
+            ]);
+
+        # Save Shipping Location
+        $shippingLocation->shipping()->associate($shipping);
+
+        # Save Shippign Actor
+        $shippingLocation->actor()->associate($actor);
+
+
+        $shippingLocation->save();
+
+		return $shipping;
+	}
+
+	/**
+	 * Delete Shipping Location
+	 *
+	 * @param ShippingLocation $shippingLocation
+	 */
+	public function deleteShippingLocation(ShippingLocation $shippingLocation)
+	{
+		$shippingLocation->delete();
 	}
 }
