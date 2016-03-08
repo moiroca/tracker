@@ -56,7 +56,7 @@
 		        		<thead>
 		        			<th> Location </th>
 		        			<th> Added By </th>
-		        			<th> Created Date </th>
+		        			<th> Date </th>
 		        		</thead>
 		        		<tbody>
 		        			@if (!empty($shippingLocations->count()))
