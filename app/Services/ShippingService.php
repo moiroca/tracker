@@ -41,16 +41,22 @@ class ShippingService
     	}
 
     	# Save Shipper
-    	$shipping->shipper()->associate($shipper);
+    	if ($shipper) {
+    		$shipping->shipper()->associate($shipper);
+    	}
 
     	# Save Consignee
-    	$shipping->consignee()->associate($consignee);
+    	if ($consignee) {
+    		$shipping->consignee()->associate($consignee);
+    	}
 
     	# Save Branch
-    	$shipping->origin()->associate($origin);
+    	if ($origin) {
+    		$shipping->origin()->associate($origin);
+    	}
 
     	$shipping->save();
-
+    	
 		return $shipping;
 	}
 

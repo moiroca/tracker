@@ -9,10 +9,14 @@
 	              </div>
 	            @endif
 	            <div class="box box-primary">
+
+		            
+
 		            <div class="box-header with-border">
-		              <h3 class="box-title">New Shipping Location</h3>
+		              <h3 class="box-title">Shipping Location</h3>
 		            </div>
 		            <!-- /.box-header -->
+		            @if ($shipping->status == \App\Utilities\Constant::SHIPPING_PENDING)
 		            <!-- form start -->
 		            <form role="form" action="{{ route('shippings.location.create') }}" method="POST">
 		            	{!! csrf_field() !!}
@@ -50,8 +54,10 @@
 		               	 	<button type="submit" class="btn btn-primary">Save Location</button>
 		              	</div>
 		            </form>
+		            
+		        	@endif
 
-		            <!-- Table For Locations -->
+		        	<!-- Table For Locations -->
 			        <table id="example2" class="table table-bordered table-hover">
 		        		<thead>
 		        			<th> Location </th>
@@ -68,13 +74,13 @@
 			        				</tr>
 			        			@endforeach
 			        			<tr>
-		        					<td> {{ $shipping->location }}</td>
+		        					<td> {{ $shipping->origin->address }}</td>
 		        					<td> {{ $shipping->addedBy->getName() }}</td>
 		        					<td> {{ $shipping->created_at }} </td>
 		        				</tr>
 		        			@else
 		        				<tr>
-		        					<td> {{ $shipping->location }}</td>
+		        					<td> {{ $shipping->origin->address }}</td>
 		        					<td> {{ $shipping->addedBy->getName() }}</td>
 		        					<td> {{ $shipping->created_at }} </td>
 		        				</tr>

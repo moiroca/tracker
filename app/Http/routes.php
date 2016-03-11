@@ -44,8 +44,20 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 	# Shipping Routes
     Route::get('/shippings', 	[ 'as' => 'shippings', 'uses' => 'ShippingController@index' ]);
 
-    Route::get('/shippings/new',	 [ 'as' => 'shippings.new', 	'uses' => 'ShippingController@getCreate' ]);
-    Route::post('/shippings/create', [ 'as' => 'shippings.create', 	'uses' => 'ShippingController@postCreate' ]);
+    Route::get('/shippings/new', [ 
+    	'as' => 'shippings.new', 	
+    	'uses' => 'ShippingController@getCreate' 
+    ]);
+
+    Route::get('/shippings/update/{id}', [ 
+    	'as' => 'shippings.update', 
+    	'uses' => 'ShippingController@update' 
+    ]);
+
+    Route::post('/shippings/create', [ 
+    	'as' => 'shippings.create', 	
+    	'uses' => 'ShippingController@postCreate' 
+    ]);
 
     Route::get('/shippings/location/new/{code}', [ 'as' => 'shippings.location.new', 	'uses' => 'ShippingController@getCreateShippingLocation' ]);
     Route::post('/shippings/location/create', 	 [ 'as' => 'shippings.location.create', 'uses' => 'ShippingController@postCreateShippingLocation' ]);

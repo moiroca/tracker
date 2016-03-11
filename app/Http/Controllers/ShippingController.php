@@ -191,4 +191,31 @@ class ShippingController extends Controller
 
         return redirect()->route('shippings.location.new', ['code' => $code])->withErrors([ 'isRequestSuccess' => $isRequestSuccess, 'error' => $error ]);
     }
+
+    /**
+     * Patch Update
+     *
+     * @todo Make this an Ajax Request
+     * @param Request $request
+     * @param Int $id
+     */
+    public function update(Request $request, $id)
+    {
+        $error = false;
+
+        try {
+            $shipping = $this->shippingRepository->find($id);
+
+            $this->shippingService->save([
+                    'status' => Constant::SHIPPING_COMPLETE
+                ], $shipping);
+
+        } catch (\Exception $e) {
+            $error = true;
+        }
+
+        \Session::flash('isUpdateShippingStatusRequestSuccess', $error);
+
+        return redirect()->route('shippings');
+    }
 }

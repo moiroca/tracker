@@ -8,6 +8,13 @@
                 <i class='fa fa-info'></i> New Shippings Recorded
               </div>
             @endif
+
+            @if(\Session::has('isUpdateShippingStatusRequestSuccess'))
+              <div class='alert alert-success'>
+                <i class='fa fa-info'></i> Update Shipping Completed  
+              </div>
+            @endif
+
             <div class="box">
                 <div class="box-header">
                   <div class="row" style='margin-bottom: 10px;'>
@@ -63,11 +70,20 @@
                                 <td>{{ $shipping->consignee->getName() }}</td>
                                 <td>{{ $shipping->origin->address }}</td>
                                 <td>{{ $shipping->location }}</td>
-                                <td>{{ $shipping->status }}</td>
+                                <td>
+                                    @if ($shipping->status == \App\Utilities\Constant::SHIPPING_COMPLETE)
+                                        <label class="label label-success"> <i class="glyphicon glyphicon-ok-sign"></i> {{ $shipping->status }}</label>
+                                    @else
+                                        <label class="label label-info"> <i class="glyphicon glyphicon-question-sign"></i> {{ $shipping->status }}</label>
+                                    @endif
+                                </td>
                                 <td>{{ $shipping->created_at }}</td>
                                 <td>
-                                  <a href="#" class='btn btn-info btn-sm'><i class='glyphicon glyphicon-edit'></i></a>
-                                  <a href="#" class='btn btn-warning btn-sm'><i class='glyphicon glyphicon-trash'></i></a>
+                                  @if ($shipping->status == \App\Utilities\Constant::SHIPPING_PENDING)
+                                      <a href="{{ route('shippings.update', [ 'id' => $shipping->id ]) }}" class='btn btn-primary btn-sm'><i class='glyphicon glyphicon-save'></i></a>
+                                  @endif
+                                  <a href="#" class='btn btn-warning btn-sm'><i class='glyphicon glyphicon-edit'></i></a>
+                                  <a href="#" class='btn btn-danger btn-sm'><i class='glyphicon glyphicon-trash'></i></a>
                                 </td>
                             </tr>
                         @endforeach
