@@ -138,7 +138,8 @@ class ShippingController extends Controller
             $error = $e->getMessage();
         }
 
-        return redirect()->route('shippings')->withErrors([ 'isRequestSuccess' => $isRequestSuccess, 'error' => $error ]);
+        dd($error);
+        // return redirect()->route('shippings')->withErrors([ 'isRequestSuccess' => $isRequestSuccess, 'error' => $error ]);
     }
 
     /**

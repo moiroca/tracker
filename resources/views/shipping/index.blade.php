@@ -24,7 +24,7 @@
                     </div>
                     <div class='col-md-2'>
                         <div class="box-tools">
-                              <a href="{{ route('shippings.new') }}" class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-plus'></i> NEW SHIPPING</a>
+                              <a href="{{ route('shippings.new') }}" class='btn btn-sm btn-primary pull-right'><i class='glyphicon glyphicon-plus'></i> NEW SHIPPING</a>
                         </div>
                     </div>
                   </div>

@@ -31,6 +31,9 @@ class ShippingService
 	{
 		if (!$shipping) {
 			$shipping = new Shipping();
+
+			# Save User who Added the Shipping
+        	$shipping->addedBy()->associate(\Auth::user());
 		}
 
 		$shipping->fill($data);
@@ -56,7 +59,7 @@ class ShippingService
     	}
 
     	$shipping->save();
-    	
+
 		return $shipping;
 	}
 
