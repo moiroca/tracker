@@ -18,10 +18,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   {!! Html::style('bower_components/Ionicons/2.0.1/css/ionicons.min.css') !!}
   <!-- Theme style -->
 
+  <!-- JM Homepage Design -->
+  {!! Html::style('css/home.css') !!}
 </head>
 <body>
-    <div class="container">
-        @yield('content')
-    </div>
+    @yield('content') 
 </body>
 </html>

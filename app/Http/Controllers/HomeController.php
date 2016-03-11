@@ -6,6 +6,7 @@ use Auth;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Repositories\ShippingRepository;
+use App\Models\ShippingLocation;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,13 @@ class HomeController extends Controller
         $code = $request->get('code', '');
 
         if (!empty($code)) {
-            $this->data['shippings'] = $shippingRepository->getShippingByCode($code);
+            $this->data['shipping'] = $shippingRepository->getShippingByCode($code)->first();
+            
+            if ($this->data['shipping']) {
+               $this->data['shippingLocations'] = ShippingLocation::where('shipping_id', '=', $this->data['shipping']->id)->withTrashed()->orderBy('created_at', 'DESC')->get();
+            } else {
+               $this->data['shippingLocations'] = [];
+            }
         } 
         
         return view('welcome', $this->data);
