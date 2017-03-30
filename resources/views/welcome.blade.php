@@ -111,6 +111,6 @@
     <!-- /.container -->
 
     <footer>
-    	<center><small>Copyright @2016</small></center>
+    	<center><small>Copyright {{ '@' . date('Y') }} </small></center>
     </footer>
 @endsection

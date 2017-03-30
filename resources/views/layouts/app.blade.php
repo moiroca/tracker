@@ -19,7 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
 
   <!-- JM Homepage Design -->
-  {!! Html::style('css/home.css') !!}
+  {!! Html::style('css/app.css') !!}
 </head>
 <body>
     @yield('content') 
