@@ -2,8 +2,18 @@
 
 /** HEADER STYLE START **/
 
-header.header-image {
+div.header-image {
+	margin-top : 100px;	
+}
+
+header {
+
 	margin-top : 50px;	
+	text-align: center;
+
+	h2, h3 {
+		font-weight: 200;
+	}
 }
 
 /** HEADER STYLE END **/

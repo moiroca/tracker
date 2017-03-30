@@ -22,6 +22,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   {!! Html::style('css/app.css') !!}
 </head>
 <body>
-    @yield('content') 
+    @yield('content')
 </body>
 </html>

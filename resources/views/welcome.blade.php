@@ -33,34 +33,39 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Full Width Image Header -->
-    <header class="header-image">
-        <div class="headline">
-            <div class="container">
-                <h2>MTN Cargo Forwarding</h2>
-                <h3>Fast and reliable forwarding company in the Philippines.</h3>
-            </div>
-        </div>
-    </header>
-
     <!-- Page Content -->
     <div class="container" id="track">
     	<div class="row">
 	        <div class="col-lg-12">
 	            <div class="box">
 	                <div class="box-header">
-	                  <div class='row'>
-	                    <div class="col-md-12" style='margin-top:100px;'>
-	                      <form method='GET' action="{{ route('index') }}">
+	                	<div class="row header-image"  style="text-align: center;">
+	                		<div class="col-md-12">
+	                  			<img src="http://www.gclshipping.com/images/img4.png" >
+	                		</div>
+	                	</div>
+	                	 <!-- Full Width Image Header -->
+					    <header class="header">
+					        <div class="headline">
+					            <div class="container">
+					                <h2>MTN Cargo Forwarding</h2>
+					                <h3>Fast and reliable forwarding company in the Philippines.</h3>
+					            </div>
+					        </div>
+					    </header>
 
-	                        <label>Search Shippings <small><a href="{{ route('home') }}"></a></small></label>
-	                        <div class="form-group form-group-lg">
-	                          	<input type='text' name='code' placeholder='Search Shipping Using Code...' class='form-control' aria-describedby="basic-addon2">
-	                          	
-	                        </div>
-	                      </form>
-	                    </div>
-	                  </div>
+		                  <div class='row'>
+		                    <div class="col-md-12" style='margin-top:40px;'> 
+		                      <form method='GET' action="{{ route('index') }}">
+
+		                        <label>Search Shippings <small><a href="{{ route('home') }}"></a></small></label>
+		                        <div class="form-group form-group-lg">
+		                          	<input type='text' name='code' placeholder='Search Shipping Using Code...' class='form-control' aria-describedby="basic-addon2">
+		                          	
+		                        </div>
+		                      </form>
+		                    </div>
+		                  </div>
 	                </div>
 	                <!-- /.box-header -->
 	                @if (isset($shipping))
